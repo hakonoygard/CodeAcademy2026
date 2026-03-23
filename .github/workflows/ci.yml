@@ -16,15 +16,15 @@ jobs:
     steps:
     - name: Check out
       uses: actions/checkout@v4
+    - name: Activate corepack
+      working-directory: .
+      run: 'corepack enable'
     - name: Set node version
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'yarn'
         cache-dependency-path: '1-DevOps/idempotweet/yarn.lock'
-    - name: Activate corepack
-      working-directory: .
-      run: 'corepack enable'
     - name: install dependencies
       run: 'yarn install --immutable'
     - name: Kjør tester

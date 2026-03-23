@@ -4,8 +4,6 @@ on:
     paths:
       - '1-DevOps/idempotweet/**'
   workflow_call:
-  push:
-
 
 defaults:
   run:

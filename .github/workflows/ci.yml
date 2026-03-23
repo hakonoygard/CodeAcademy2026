@@ -1,0 +1,33 @@
+name: package
+on: 
+  pull_request:
+    paths:
+      - '1-DevOps/idempotweet/**'
+  workflow_call:
+
+
+defaults:
+  run:
+    working-directory: 1-DevOps/idempotweet
+jobs:
+  test:
+    runs-on: "${{ vars.RUNNER || 'self-hosted' }}"
+    steps:
+    - name: Check out
+      uses: actions/checkout@v5
+    - name: Set node version
+      uses: actions/setup-node
+      with:
+        node-version: '20'
+        cache: 'yarn'
+    - name: Activate corepack
+      working-directory: .
+      run: 'corepack enable'
+    - name: install dependencies
+      run: 'yarn install --immutable'
+    - name: Kjør tester
+      run: 'yarn test'
+    - name: Create coverage report
+      run: 'yarn test:coverage'
+
+

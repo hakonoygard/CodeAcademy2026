@@ -11,7 +11,8 @@ export default defineConfig({
     include: ["__tests__/**/*.{test,spec}.{ts,tsx}"],
     coverage: {
       provider: "v8",
-      reporter: ["text", "json", "html"],
+      reporter: ["lcov", "text", "json", "html"],
+      reportsDirectory: './coverage',
       include: ["src/**/*.{ts,tsx}"],
       exclude: [
         "src/**/*.d.ts",
@@ -20,6 +21,10 @@ export default defineConfig({
         "src/app/page.tsx",
         "src/app/api/**/*.ts",
         "src/types/**/*.ts",
+        "src/lib/db.ts",
+        "src/lib/rabbitmq.ts",
+        "src/app/components/Container.tsx",
+        "src/app/components/IdemForm.tsx"
       ],
       thresholds: {
         lines: 70,

@@ -4,6 +4,7 @@ on:
     paths:
       - '1-DevOps/idempotweet/**'
   workflow_call:
+  push:
 
 
 defaults:
@@ -11,12 +12,12 @@ defaults:
     working-directory: 1-DevOps/idempotweet
 jobs:
   test:
-    runs-on: "${{ vars.RUNNER || 'self-hosted' }}"
+    runs-on: ${{ vars.RUNNER || 'self-hosted' }}
     steps:
     - name: Check out
-      uses: actions/checkout@v5
+      uses: actions/checkout@v4
     - name: Set node version
-      uses: actions/setup-node
+      uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'yarn'
